@@ -18,7 +18,6 @@ return [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
-        'scheme' => 'https',
     ],
 
     'postmark' => [
@@ -31,4 +30,12 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-];
+    'facebook'=> [
+        'client_id' => env('FACEBOOK_CLIENT_ID', '539542454251871'),
+        'client_secret' =>
+        env('FACEBOOK_CLIENT_SECRET',
+        'a1c0c01dbf7f0f6963e8fde52850600a'),
+        'redirect' => 
+        env('FACEBOOK_REDIRECT', 'http://localhost:8888/login/facebook/callback')
+        ],
+    ];

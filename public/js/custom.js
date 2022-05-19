@@ -26,3 +26,30 @@ function validateData(){
     }
     return isValid;
 }
+
+function validarExt()
+{
+    var archivoInput = document.getElementById('perfil');
+    var archivoRuta = archivoInput.value;
+    var extPermitidas = /(.pdf)$/i;
+    if(!extPermitidas.exec(archivoRuta)){
+        alert('Solo se permite seleccionar archivos con extención PDF');
+        archivoInput.value = '';
+        return false;
+    }
+
+    else
+    {
+        //PRevio del PDF
+        if (archivoInput.files && archivoInput.files[0]) 
+        {
+            var visor = new FileReader();
+            visor.onload = function(e) 
+            {
+                document.getElementById('visorArchivo').innerHTML = 
+                '<embed src="'+e.target.result+'" width="500" height="375" />';
+            };
+            visor.readAsDataURL(archivoInput.files[0]);
+        }
+    }
+}

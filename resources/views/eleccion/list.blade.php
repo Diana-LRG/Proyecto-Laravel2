@@ -39,14 +39,14 @@
             <td>{{$eleccion->horacierre->format('H:i')}}</td>
             <td>{{$eleccion->observaciones}}</td>
             <td><a href="{{ route('eleccion.edit', $eleccion->id)}}"
-            class="btn btn-primary"class="btn btn-primary" ><i class="fa fa-edit" aria-hidden="true"></i></a> </td>
+            class="btn btn-primary"class="btn btn-primary" >Edit<i class="fa fa-edit" aria-hidden="true"></i></a> </td>
             <td>
             <form action="{{ route('eleccion.destroy', $eleccion->id)}}"
             method="post">
             @csrf
             @method('DELETE')
             <button class="btn btn-danger" type="submit"
-            onclick="return confirm('Esta seguro de borrar {{$eleccion->ubicacion}}')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            onclick="return confirm('Esta seguro de borrar {{$eleccion->ubicacion}}')">Delete<i class="fa fa-trash" aria-hidden="true"></i></button>
             </form>
             
             </td>

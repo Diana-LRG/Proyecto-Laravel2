@@ -46,16 +46,23 @@
                 <label for="foto">Foto:</label>
                 <img src="/image/{{$candidato->foto}}" height="100px">
                 <input type="file" id="foto" accept="image/png, image/jpeg" 
-                 class="form-control" name="foto" />
+                 class="form-control" name="foto"
+                 onchange="previewImage(event,'imageCandidato');"
+                 />
+                 <img src="" id="imageCandidato" width="200px" heigth="200px">
             </div>
             <div class="form-group">
                 <label for="perfil">Perfil:</label>
                 <input type="file" id="perfil" accept="application/pdf"
-                 class="form-control" name="perfil" />
+                 class="form-control" name="perfil" onchange="return validarExt()" />
             </div>
+            <br><br>
+            <div id="visorArchivo"></div>
 
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
     </div>
 </div>
+<script type="text/javascript" src="{{ URL::asset('js/custom.js') }}"></script>
+
 @endsection

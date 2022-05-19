@@ -27,7 +27,6 @@ class CandidatoController extends Controller
     {
         return view('candidato/create');
     }
-
     function validateData(Request $request)
     {
         $request->validate([
@@ -56,28 +55,18 @@ class CandidatoController extends Controller
             $perfil = $request->file('perfil');
             $perfilcandidato = $perfil->getClientOriginalName();
         }
-        $campos=[
+        $campos
+            = array(
                 'nombrecompleto' => $request->nombrecompleto,
                 'sexo'           => $request->sexo,
                 'foto'           => $fotocandidato,
                 'perfil'         => $perfilcandidato,
-        ];
+            );
         if ($request->hasFile('foto')) $foto->move(public_path('image'), $fotocandidato);
         if ($request->hasFile('perfil')) $perfil->move(public_path('pdf'), $perfilcandidato);
-        //print_r($campos);
         $candidato = Candidato::create($campos);
-        //echo $candidato->nombrecompleto . " se guardo correctamente ... ";
-        return redirect("candidato");
+        echo $candidato->nombrecompleto . " se guardo correctamente ... ";
     }
-
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
@@ -92,7 +81,7 @@ class CandidatoController extends Controller
     public function edit($id)
     {
         $candidato = Candidato::find($id);
-        return view ('candidato/edit', compact('candidato')); 
+        return view('candidato/edit', compact('candidato'));
     }
 
     /**
@@ -118,9 +107,8 @@ class CandidatoController extends Controller
         }
 
         $currentValue = Candidato::find($id);
-        
         if (empty($fotoCandidato)) $fotoCandidato = $currentValue->foto;
-        if (empty($perfilCandidato)) $perfilCandidato = $currentValue->perfil;
+        if (empty($perfilCandidato)) $perilCandidato = $currentValue->perfil;
 
         $campos=[
                 'nombrecompleto' => $request->nombrecompleto,
@@ -133,6 +121,8 @@ class CandidatoController extends Controller
 
         Candidato::whereId($id)->update($campos);
         return redirect('candidato')->with('success', 'Actualizado correctamente...');
+  
+    
     }
 
     /**
