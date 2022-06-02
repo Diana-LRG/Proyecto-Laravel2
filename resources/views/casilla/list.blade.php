@@ -6,6 +6,7 @@
     }
 </style>
 
+
 <div class="uper">
     @if(session()->get('success'))
     <div class="alert alert-success">
@@ -13,6 +14,14 @@
     </div>
     <br />
     @endif
+    <div class="card">
+                <div class="card-header">PDF</div>
+                <div class="card-body">
+                <a class="btn btn-primary" href="/casilla/pdf">
+                Generar_PDF
+                </a>
+                </div>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -42,4 +51,12 @@
     </tbody>
 </table>
 <div>
+    <script type="text/php">
+    if ( isset($pdf) ) {
+    $pdf->page_script('
+    $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "normal");
+    $pdf->text(270, 730, "Pagina $PAGE_NUM de $PAGE_COUNT", $font, 10);
+    ');
+    }
+    </script>
 @endsection

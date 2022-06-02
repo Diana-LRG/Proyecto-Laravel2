@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\Models\Casilla;
+use Barryvdh\DomPDF\Facade as PDF; //--- Se agregó esta línea
 
 
 class CasillaController extends Controller
@@ -95,6 +94,8 @@ class CasillaController extends Controller
     return redirect('casilla')
     ->with('sucess','Actualizado correctamente');
     }
+    
+    
 
     /**
      * Remove the specified resource from storage.
@@ -106,5 +107,20 @@ class CasillaController extends Controller
     {
         Casilla::whereId($id)->delete();
         return redirect('casilla');
+    }
+    
+    
+   /* $html = "<div style='text-align:center;'><h1>PDF generado desde etiquetas html</h1>
+    <br><h3>&copy;Diana.dev</h3> </div>";
+    $pdf = PDF::loadHTML($html);
+    return $pdf->download('archivo.pdf');*/
+    
+     
+    public function generatepdf()
+    {
+        $casilla = Casilla::all();
+        $pdf = PDF::loadView('casilla/list', ['casillas'=>$casilla]);
+        return $pdf->download('Casilla.pdf');
+        //dd($casilla);
     }
 }

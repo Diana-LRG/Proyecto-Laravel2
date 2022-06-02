@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Eleccion;
-
+use Barryvdh\DomPDF\Facade as PDF; //--- Se agrego
 class EleccionController extends Controller
 {
     /**
@@ -129,5 +129,11 @@ class EleccionController extends Controller
         Eleccion::whereId($id)-> delete();
         return redirect('eleccion');
         //
+    }
+    public function generatepdf()
+    {
+        $eleccion = Eleccion::all();
+        $pdf = PDF::loadView('eleccion/list', ['elecciones'=>$eleccion]);
+        return $pdf->download('Eleccion.pdf');
     }
 }

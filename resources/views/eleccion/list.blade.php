@@ -13,6 +13,14 @@
     </div>
     <br />
     @endif
+    <div class="card">
+                <div class="card-header">PDF</div>
+                <div class="card-body">
+                <a class="btn btn-primary" href="/eleccion/pdf">
+                Generar_PDF
+                </a>
+    </div>
+
 <table class="table table-striped">
     <thead>
         <tr>

@@ -10,6 +10,7 @@ use App\Models\Voto;
 use App\Models\Votocandidato;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade as PDF; //--- Se agrego
 
 class VotoController extends Controller
 {   
@@ -211,5 +212,11 @@ class VotoController extends Controller
             $success=false;
         }     
         return view ('message',compact('message','success'));
+    }
+    public function generatepdf()
+    {
+        $voto = Voto::all();
+        $pdf = PDF::loadView('voto/list', ['votos'=>$voto]);
+        return $pdf->download('Voto.pdf');
     }
 }

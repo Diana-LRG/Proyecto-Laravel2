@@ -13,6 +13,8 @@
     </div>
     <br />
     @endif
+    <div class="card">
+   
 <table class="table table-striped">
     <thead>
         <tr>

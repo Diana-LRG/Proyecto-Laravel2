@@ -81,7 +81,7 @@ class CandidatoController extends Controller
     public function edit($id)
     {
         $candidato = Candidato::find($id);
-        return view('candidato/edit', compact('candidato'));
+        return view('candidato/edit', compact('candidatos'));
     }
 
     /**
@@ -136,4 +136,6 @@ class CandidatoController extends Controller
         Candidato::whereId($id)->delete();
         return redirect('candidato');
     }
+      
+   
 }
